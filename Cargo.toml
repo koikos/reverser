@@ -1,7 +1,15 @@
 [package]
 name = "reverser"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
+authors = ["Mike Kozik <mike.koikos@gmail.com>"]
+description = "A simple CLI tool to reverse lines of input text file."
+license = "MIT"
+publish = false
 
 [dependencies]
-encoding_rs = "0.8"
+time = { version = "0.3", features = ["formatting"] }
+built = { version = "0.7", features = ["chrono"] }
+
+[build-dependencies]
+built = { version = "0.7", features = ["cargo-lock", "dependency-tree", "git2", "chrono", "semver"] }
