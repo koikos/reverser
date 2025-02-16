@@ -1,2 +1,3 @@
-pub mod reader;
-pub mod writer;
+pub mod file_reader;
+pub mod file_writer;
+pub mod types;
