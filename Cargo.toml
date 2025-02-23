@@ -1,6 +1,6 @@
 [package]
 name = "reverser"
-version = "0.0.2"
+version = "0.1.0"
 description = '''
     A simple CLI tool that reverses the lines of an input file. 
     It reads the file byte by byte, splits its content into lines using the '\n' character, 
