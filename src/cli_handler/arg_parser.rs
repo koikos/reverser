@@ -27,7 +27,6 @@ fn build_parser() -> Command {
         )
         .arg(
             arg!(-i --info "Print build information message")
-                .required(false)
                 .action(clap::ArgAction::SetTrue),
         );
 }
@@ -55,8 +54,9 @@ fn input_file_not_provided_error() -> ! {
 fn print_info() {
     println!("     Binary Name: {}", env!("CARGO_PKG_NAME"));
     println!("         Version: {}", env!("CARGO_PKG_VERSION"));
+    println!("   Build Profile: {}", env!("BUILD_PROFILE"));
+    println!(" Build Timestamp: {}", env!("BUILD_TIMESTAMP"));
     println!("      Git Commit: {}", get_git_commit_msg());
-    println!("Compilation Date: {}", env!("BUILD_TIMESTAMP"));
     println!("         Authors: {}", env!("CARGO_PKG_AUTHORS"));
     println!("         License: {}", env!("CARGO_PKG_LICENSE"));
 }

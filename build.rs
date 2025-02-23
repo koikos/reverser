@@ -2,8 +2,15 @@ use std::process::Command;
 use chrono::Utc;
 
 fn main() {
+    expose_build_profile();
     expose_build_timestamp();
     expose_git_info();
+}
+
+fn expose_build_profile() {
+    let profile = std::env::var("PROFILE").unwrap_or("DEBUG".to_string());
+    println!("cargo:rustc-env=BUILD_PROFILE={}", profile);
+    println!("cargo:rerun-if-env-changed=PROFILE");
 }
 
 fn expose_build_timestamp() {
