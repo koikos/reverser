@@ -1,15 +1,19 @@
 [package]
 name = "reverser"
 version = "0.0.2"
-edition = "2021"
+description = '''
+    A simple CLI tool that reverses the lines of an input file. 
+    It reads the file byte by byte, splits its content into lines using the '\n' character, 
+    reverses the lines, and saves the result alongside the original file with the `-reversed` suffix.'''
 authors = ["Mike Kozik <mike.koikos@gmail.com>"]
-description = "A simple CLI tool to reverse lines of input text file."
 license = "MIT"
+edition = "2021"
 publish = false
 
 [dependencies]
-time = { version = "0.3", features = ["formatting"] }
-built = { version = "0.7", features = ["chrono"] }
+clap = { version = "4.5", features = ["cargo"] }
+#time = { version = "0.3", features = ["formatting"] }
+#built = { version = "0.7", features = ["chrono"] }
 
 [build-dependencies]
-built = { version = "0.7", features = ["cargo-lock", "dependency-tree", "git2", "chrono", "semver"] }
+#built = { version = "0.7", features = ["cargo-lock", "dependency-tree", "git2", "chrono", "semver"] }

@@ -4,7 +4,6 @@ use std::io::{self, BufWriter, Write};
 use std::path::{Path, PathBuf};
 use encoding_rs::WINDOWS_1250;
 
-const ENCODING: &encoding_rs::Encoding = &WINDOWS_1250;
 
 fn main() -> io::Result<()> {
     let args: Vec<String> = env::args().collect();
@@ -20,17 +19,14 @@ fn main() -> io::Result<()> {
         return Ok(());
     }
 
-    let raw_bytes = fs::read(path)?;
-    let decoded = decode_bytes(&raw_bytes);
-    let mut lines: Vec<&str> = decoded.lines().collect();
-    lines.reverse();
+    // read and reverse lines //
     
     let output_path = get_output_filename(path);
     if !confirm_overwrite(&output_path)? {
         return Ok(());
     }
 
-    write_output_file(&output_path, &lines)?;
+    // save file
     println!("Saved file: {}", output_path.display());
     Ok(())
 }
@@ -55,13 +51,6 @@ fn validate_path(path: &Path) -> bool {
     true
 }
 
-fn decode_bytes(raw_bytes: &[u8]) -> String {
-    let (decoded, _, had_errors) = ENCODING.decode(raw_bytes);
-    if had_errors {
-        eprintln!("Warning: Some characters were replaced due to encoding issues.");
-    }
-    decoded.into_owned()
-}
 
 fn confirm_overwrite(output_path: &Path) -> io::Result<bool> {
     if output_path.exists() {
@@ -76,17 +65,6 @@ fn confirm_overwrite(output_path: &Path) -> io::Result<bool> {
     Ok(true)
 }
 
-fn write_output_file(output_path: &Path, lines: &[&str]) -> io::Result<()> {
-    let mut output_file = BufWriter::new(File::create(output_path)?);
-    let binding = lines.join("\n");
-    let encoded = ENCODING.encode(&binding);
-    output_file.write_all(&encoded.0)?;
-    
-    for line in lines {
-        writeln!(output_file, "{}", line)?;
-    }
-    Ok(())
-}
 
 fn get_output_filename(input_path: &Path) -> PathBuf {
     let mut output_path = input_path.to_path_buf();

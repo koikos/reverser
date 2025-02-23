@@ -1,8 +1,3 @@
-pub fn print_version_and_exit() {
-    println!("{}", get_version());
-    std::process::exit(0);
-}
-
 pub fn print_info_end_exit() {
     println!("     Binary Name: {}", built_info::PKG_NAME);
     println!("         Version: {}", built_info::PKG_VERSION);
