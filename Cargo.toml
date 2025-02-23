@@ -12,8 +12,6 @@ publish = false
 
 [dependencies]
 clap = { version = "4.5", features = ["cargo"] }
-#time = { version = "0.3", features = ["formatting"] }
-#built = { version = "0.7", features = ["chrono"] }
 
 [build-dependencies]
-#built = { version = "0.7", features = ["cargo-lock", "dependency-tree", "git2", "chrono", "semver"] }
+chrono = "0.4"

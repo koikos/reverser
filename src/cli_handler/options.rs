@@ -1,5 +1,5 @@
 use std::path::PathBuf;
 
-pub struct ParsedArgs {
+pub struct Options {
     pub input_path: PathBuf
 }
